@@ -26,15 +26,10 @@
     "release:major": "npm version major && npm publish",
     "prepublish": "npm run build",
     "build": "node build.js",
-    "document": "documentjs",
-    "develop": "lite-server"
+    "document": "bit-docs",
+    "develop": "done-serve --static --develop --port 8080"
   },
   "main": "dist/cjs/react-view-models",
-  "browserify": {
-    "transform": [
-      "cssify"
-    ]
-  },
   "keywords": [
     "react",
     "viewmodel",
@@ -60,27 +55,40 @@
   },
   "dependencies": {
     "can-compute": "^3.0.5",
-    "can-types": "^1.0.2",
+    "can-define": "^1.0.15",
+    "can-observation": "^3.0.1",
     "can-util": "^3.2.2",
-    "react": "^15.4.2"
+    "can-view-scope": "^3.1.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   },
   "devDependencies": {
-    "can-define": "^1.0.15",
-    "cssify": "^1.0.2",
-    "documentjs": "^0.4.4",
-    "donejs-cli": "^1.0.1",
+    "babel-eslint": "^7.2.3",
+    "bit-docs": "0.0.7",
+    "can-component": "^3.0.7",
+    "can-stache": "^3.0.24",
+    "steal-qunit": "^1.0.0",
+    "steal-tools": "^1.1.1",
     "eslint": "^3.14.1",
     "eslint-plugin-react": "^6.5.0",
-    "generator-donejs": "^1.0.5",
-    "lite-server": "^2.2.2",
-    "react-addons-test-utils": "^15.4.2",
-    "react-dom": "^15.4.2",
+    "testee": "^0.4.0",
+    "done-serve": "^0.2.5",
     "steal": "^1.1.0",
     "steal-builtins": "^1.0.0",
     "steal-css": "^1.2.0",
-    "steal-jsx": "0.0.2",
-    "steal-qunit": "^1.0.0",
-    "steal-tools": "^1.1.1",
-    "testee": "^0.5.0"
+    "steal-jsx": "0.0.2"
+  },
+  "bit-docs": {
+    "dependencies": {
+      "bit-docs-glob-finder": "^0.0.5",
+      "bit-docs-dev": "^0.0.3",
+      "bit-docs-js": "^0.0.3",
+      "bit-docs-generate-readme": "^0.0.8"
+    },
+    "glob": {
+      "pattern": "**/*.{js,md}",
+      "ignore": "node_modules/**/*"
+    }
+>>>>>>> origin/master
   }
 }

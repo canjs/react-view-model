@@ -36,3 +36,8 @@ An example application using the ViewModel to create an extra prop, who's value 
 An example application which includes viewModel mutation and demonstrates auto-rendering.
 
 @demo demos/react-view-model/component.counter.html
+
+You can also play with the above example on JS Bin:
+
+<a class="jsbin-embed" href="https://jsbin.com/lunajov/1/embed?js,output">react-view-model/component demo on jsbin.com</a>
+<script src="https://static.jsbin.com/js/embed.min.js?4.0.4"></script>

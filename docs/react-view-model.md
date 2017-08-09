@@ -41,6 +41,6 @@ You can also play with the above example on JS Bin:
 
 You can also use this module with [Preact](https://preactjs.com):
 
-<a class="jsbin-embed" href="https://jsbin.com/muqeqec/5/embed?html,js,output">react-view-model demo with Preact on jsbin.com</a>
+<a class="jsbin-embed" href="https://jsbin.com/muqeqec/5/embed?js,output">react-view-model demo with Preact on jsbin.com</a>
 
 <script src="https://static.jsbin.com/js/embed.min.js?4.0.4"></script>

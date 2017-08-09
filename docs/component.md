@@ -40,4 +40,9 @@ An example application which includes viewModel mutation and demonstrates auto-r
 You can also play with the above example on JS Bin:
 
 <a class="jsbin-embed" href="https://jsbin.com/lunajov/1/embed?js,output">react-view-model/component demo on jsbin.com</a>
+
+You can also use this module with [Preact](https://preactjs.com):
+
+<a class="jsbin-embed" href="https://jsbin.com/fuxerik/2/embed?js,output">react-view-model/component demo with Preact on jsbin.com</a>
+
 <script src="https://static.jsbin.com/js/embed.min.js?4.0.4"></script>

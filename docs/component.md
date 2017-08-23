@@ -45,4 +45,8 @@ You can also use this module with [Preact](https://preactjs.com):
 
 <a class="jsbin-embed" href="https://jsbin.com/fuxerik/2/embed?js,output">react-view-model/component demo with Preact on jsbin.com</a>
 
+Here’s a recreation of the clock example from [React’s State and Lifecycle docs](https://facebook.github.io/react/docs/state-and-lifecycle.html):
+
+<a class="jsbin-embed" href="https://jsbin.com/zikaxuy/4/embed?js,output">react-view-model/component clock demo on jsbin.com</a>
+
 <script src="https://static.jsbin.com/js/embed.min.js?4.0.4"></script>

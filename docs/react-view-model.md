@@ -27,7 +27,7 @@ export default reactViewModel( 'AppComponent', ViewModel, (viewModel) => (<div>{
 
 ## Use
 
-An example application using the ViewModel to create an extra prop, who's value is derived from other props.
+An example application using the ViewModel to create an extra prop, whose value is derived from other props.
 
 @demo demos/react-view-model/function.name.html
 

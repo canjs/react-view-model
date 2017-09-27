@@ -48,7 +48,7 @@
     "eslint": "^4.1.0",
     "eslint-plugin-react": "^7.1.0",
     "react": "^15.6.0",
-    "react-dom": "^15.6.0",
+    "react-dom": "^16.0.0",
     "steal": "^1.5.3",
     "steal-builtins": "^1.0.0",
     "steal-qunit": "^1.0.0",

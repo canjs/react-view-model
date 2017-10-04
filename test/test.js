@@ -439,6 +439,38 @@ QUnit.module('react-view-model', () => {
 
 		});
 
+
+		QUnit.test('should bind viewModel methods to the viewModel (but not defined function values)', (assert) => {
+			let vm;
+			let BaseMap = DefineMap.extend('ViewModel', {
+				unboundMethod: {
+					type: 'any',
+					value: function() {
+						return function() {
+							assert.notEqual(this, vm, `the context of defined functions are not bound`);
+						};
+					},
+				},
+				method() {
+					assert.equal(this, vm, `the context of vm method calls are bound to the vm`);
+				}
+			});
+			let ViewModel = BaseMap.extend({
+				someOtherMethod() {
+					return this;
+				}
+			});
+			var Person = reactViewModel(ViewModel, (vm) => {
+				return <div onClick={vm.method} onDoubleClick={vm.unboundMethod}>Adam Barrett</div>;
+			});
+
+			const testInstance = ReactTestUtils.renderIntoDocument(<Person />);
+			vm = testInstance.viewModel;
+			const divComponent = ReactTestUtils.findRenderedDOMComponentWithTag(testInstance, 'div');
+			ReactTestUtils.Simulate.click(divComponent);
+			ReactTestUtils.Simulate.doubleClick(divComponent);
+		});
+
 	});
 
 });

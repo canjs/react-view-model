@@ -1,11 +1,19 @@
 var each = require("can-util/js/each/each");
 var DefineMap = require("can-define/map/map");
 
-module.exports = function bindMethods(ViewModel) {
-	var setup = ViewModel.prototype.setup;
+var METHODS_TO_AUTOBIND_KEY = '_methodsToAutobind-react-view-models';
 
-	ViewModel.prototype.setup = function () {
-		var methods = getMethods(ViewModel.prototype, {});
+module.exports = function bindMethods(ViewModel) {
+	if (ViewModel[METHODS_TO_AUTOBIND_KEY]) {
+		return;
+	}
+	var setup = ViewModel.prototype.setup;
+	var methods = getMethods(ViewModel.prototype, {});
+	Object.defineProperty(ViewModel, METHODS_TO_AUTOBIND_KEY, {
+		enumerable: false,
+		value: methods
+	});
+	ViewModel.prototype.setup = function setUpWithAutoBind() {
 		for (var key in methods) {
 			this[key] = methods[key].bind(this);
 		}
@@ -17,7 +25,7 @@ module.exports = function bindMethods(ViewModel) {
 function getMethods(proto, methods) {
 	if (proto && proto !== Object.prototype && proto !== DefineMap.prototype) {
 		each(proto._define.methods, function (property, key) {
-			if (typeof property === 'function' && key !== 'constructor' && key !== 'setup') {
+			if (!(key in methods) && key !== 'constructor') {
 				methods[key] = property;
 			}
 		});

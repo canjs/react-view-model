@@ -3,7 +3,7 @@ var DefineMap = require("can-define/map/map");
 
 var METHODS_TO_AUTOBIND_KEY = '_methodsToAutobind-react-view-models';
 
-module.exports = function bindMethods(ViewModel) {
+module.exports = function autoBindMethods(ViewModel) {
 	if (ViewModel[METHODS_TO_AUTOBIND_KEY]) {
 		return;
 	}

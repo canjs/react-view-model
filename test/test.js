@@ -471,7 +471,6 @@ QUnit.module('react-view-model', () => {
 		});
 
 		QUnit.test('the autobind methods feature should follow JS prototype rules, and bind only the lowest method in the proto chain', (assert) => {
-			let vm;
 			let BaseMap = DefineMap.extend('ViewModel', {
 				method(){
 					return 'NO BAD';
@@ -487,9 +486,8 @@ QUnit.module('react-view-model', () => {
 			});
 
 			const testInstance = ReactTestUtils.renderIntoDocument(<Person />);
-			vm = testInstance.viewModel;
 			const divComponent = ReactTestUtils.findRenderedDOMComponentWithTag(testInstance, 'div');
-			assert.equal(divComponent.textContent, 'GOOD!', 'autobinding respects prototype rules')
+			assert.equal(divComponent.textContent, 'GOOD!', 'autobinding respects prototype rules');
 		});
 
 		QUnit.test('should not autobind methods again, if 2 components are using the same ViewModel class', (assert) => {
@@ -509,8 +507,8 @@ QUnit.module('react-view-model', () => {
 				},
 				enumerable: descriptor.enumerable
 			});
-			var Rule = reactViewModel(ViewModel, (vm) => <hr />);
-			var HRule = reactViewModel(ViewModel, (vm) => <hr />);
+			var Rule = reactViewModel(ViewModel, () => <hr />);
+			var HRule = reactViewModel(ViewModel, () => <hr />);
 			ReactTestUtils.renderIntoDocument(
 				<div>
 					<Rule />

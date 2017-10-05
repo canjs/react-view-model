@@ -1,6 +1,9 @@
 var assign = require("can-util/js/assign/assign");
 var Component = require("./component");
 var namespace = require("can-namespace");
+var promise = require("./helpers/promise");
+var autoBindMethods = require("./helpers/autobind-methods");
+var makeEnumerable = require("./helpers/make-enumerable");
 
 module.exports = namespace.reactViewModel = function reactViewModel(displayName, ViewModel, render) {
 	if (arguments.length === 1) {
@@ -55,3 +58,9 @@ module.exports = namespace.reactViewModel = function reactViewModel(displayName,
 
 	return App;
 };
+
+// Expose Component and helpers to named imports
+module.exports.Component = Component;
+module.exports.promise = promise;
+module.exports.autoBindMethods = autoBindMethods;
+module.exports.makeEnumerable = makeEnumerable;

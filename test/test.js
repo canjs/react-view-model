@@ -465,7 +465,7 @@ QUnit.module('react-view-model', () => {
 				title: { type: 'string' }
 			});
 			ChildVM.List = DefineList.extend({
-			  '#': ChildVM
+				'#': ChildVM
 			});
 
 			let ParentVM = DefineMap.extend('ParentVM', {
@@ -475,13 +475,13 @@ QUnit.module('react-view-model', () => {
 				}
 			});
 			var ParentComponent = reactViewModel(ParentVM, function ParentComponent(parentVm) {
-	          return (
-	          	<div>
-		          {parentVm.children.serialize().map(item => (
-		            <p key={item.title}>{ item.title }</p>
-		          ))}
-	          	</div>
-	          )
+				return (
+					<div>
+						{parentVm.children.serialize().map(item => (
+							<p key={item.title}>{ item.title }</p>
+						))}
+					</div>
+				);
 			});
 			const testInstance = ReactTestUtils.renderIntoDocument( <ParentComponent/> );
 			var divElement = ReactTestUtils.findRenderedDOMComponentWithTag( testInstance, 'div' );
@@ -493,7 +493,7 @@ QUnit.module('react-view-model', () => {
 				title: { type: 'string' }
 			});
 			ChildVM.List = DefineList.extend({
-			  '#': ChildVM
+				'#': ChildVM
 			});
 
 			let ParentVM = DefineMap.extend('ParentVM', {
@@ -503,13 +503,13 @@ QUnit.module('react-view-model', () => {
 				}
 			});
 			var ParentComponent = reactViewModel(ParentVM, function ParentComponent(parentVm) {
-	          return (
-	          	<div>
-		          {parentVm.children.map(item => (
-		            <p key={item.title}>{ item.title }</p>
-		          ))}
-	          	</div>
-	          )
+				return (
+					<div>
+						{parentVm.children.map(item => (
+							<p key={item.title}>{ item.title }</p>
+						))}
+					</div>
+				);
 			});
 			const testInstance = ReactTestUtils.renderIntoDocument( <ParentComponent/> );
 			var divElement = ReactTestUtils.findRenderedDOMComponentWithTag( testInstance, 'div' );

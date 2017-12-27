@@ -460,6 +460,62 @@ QUnit.module('react-view-model', () => {
 			assert.equal(getTextFromElement(divComponent), 'Yetti Baker');*/
 		});
 
+		QUnit.test('defineListInstance.serialize().map works', (assert) => {
+			let ChildVM = DefineMap.extend('ChildVM', {
+				title: { type: 'string' }
+			});
+			ChildVM.List = DefineList.extend({
+			  '#': ChildVM
+			});
+
+			let ParentVM = DefineMap.extend('ParentVM', {
+				children: {
+					Type: ChildVM.List,
+					value: [{title: "one"}]
+				}
+			});
+			var ParentComponent = reactViewModel(ParentVM, function ParentComponent(parentVm) {
+	          return (
+	          	<div>
+		          {parentVm.children.serialize().map(item => (
+		            <p key={item.title}>{ item.title }</p>
+		          ))}
+	          	</div>
+	          )
+			});
+			const testInstance = ReactTestUtils.renderIntoDocument( <ParentComponent/> );
+			var divElement = ReactTestUtils.findRenderedDOMComponentWithTag( testInstance, 'div' );
+			assert.ok(divElement.getElementsByTagName.length, "children inserted");
+		});
+
+		QUnit.test('defineListInstance.map works', (assert) => {
+			let ChildVM = DefineMap.extend('ChildVM', {
+				title: { type: 'string' }
+			});
+			ChildVM.List = DefineList.extend({
+			  '#': ChildVM
+			});
+
+			let ParentVM = DefineMap.extend('ParentVM', {
+				children: {
+					Type: ChildVM.List,
+					value: [{title: "one"}]
+				}
+			});
+			var ParentComponent = reactViewModel(ParentVM, function ParentComponent(parentVm) {
+	          return (
+	          	<div>
+		          {parentVm.children.map(item => (
+		            <p key={item.title}>{ item.title }</p>
+		          ))}
+	          	</div>
+	          )
+			});
+			const testInstance = ReactTestUtils.renderIntoDocument( <ParentComponent/> );
+			var divElement = ReactTestUtils.findRenderedDOMComponentWithTag( testInstance, 'div' );
+			assert.ok(divElement.getElementsByTagName.length, "children inserted");
+		});
+
 	});
 
 	QUnit.module('when using React patterns', () => {

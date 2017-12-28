@@ -1,10 +1,7 @@
 import QUnit from 'steal-qunit';
 import React /*, { Component as ReactComponent } */ from 'react';
-import PropTypes from 'prop-types';
 import ReactTestUtils from 'react-dom/test-utils';
 
-// old stealjs does not seem to handle named exports properly
-const ReactComponent = React.Component;
 
 import reactViewModel from 'react-view-model';
 import Component from 'react-view-model/component';

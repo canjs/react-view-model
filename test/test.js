@@ -7,7 +7,7 @@ import reactViewModel from 'react-view-model';
 import Component from 'react-view-model/component';
 import { getTextFromElement, supportsFunctionName } from './utils';
 
-import './definemap.test';
+import './test-define';
 
 QUnit.module('react-view-model', () => {
 

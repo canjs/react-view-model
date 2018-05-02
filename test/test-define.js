@@ -205,11 +205,11 @@ QUnit.module('react-view-model with DefineMap', () => {
 		});
 
 		QUnit.test('should update parent before child', (assert) => {
-			var expected = [ "parent", "child1", "child2", "parent", "child1", "child2" ];
+			var expected = [ 'parent', 'child1', 'child2', 'parent', 'child1', 'child2' ];
 
 			class ChildComponent1 extends Component {
 				render() {
-					assert.equal("child1", expected.shift(), "child1 renderer called in the right order");
+					assert.equal('child1', expected.shift(), 'child1 renderer called in the right order');
 					return <div>{this.viewModel.value}</div>;
 				}
 			}
@@ -221,7 +221,7 @@ QUnit.module('react-view-model with DefineMap', () => {
 			});
 			class ChildComponent2 extends Component {
 				render() {
-					assert.equal("child2", expected.shift(), "child2 renderer called in the right order");
+					assert.equal('child2', expected.shift(), 'child2 renderer called in the right order');
 					return <div>{this.viewModel.value}</div>;
 				}
 			}
@@ -234,7 +234,7 @@ QUnit.module('react-view-model with DefineMap', () => {
 
 			class ParentComponent extends Component {
 				render() {
-					assert.equal("parent", expected.shift(), "parent renderer called in the right order");
+					assert.equal('parent', expected.shift(), 'parent renderer called in the right order');
 					return (
 						<div>
 							<ChildComponent1 value={this.viewModel.value} />
@@ -251,7 +251,7 @@ QUnit.module('react-view-model with DefineMap', () => {
 			});
 
 			const viewModel = ReactTestUtils.renderIntoDocument( <ParentComponent value="foobar" /> ).viewModel;
-			viewModel.value = "change";
+			viewModel.value = 'change';
 		});
 
 	});
@@ -316,7 +316,7 @@ QUnit.module('react-view-model with DefineMap', () => {
 
 		QUnit.test('unmount works', (assert) => {
 			let ParentVM = DefineMap.extend('ParentVM', {
-				showChild: {type: "boolean", value: true}
+				showChild: {type: 'boolean', value: true}
 			});
 			let ChildVM = DefineMap.extend('ChildVM', {
 
@@ -337,14 +337,14 @@ QUnit.module('react-view-model with DefineMap', () => {
 			testInstance.viewModel.showChild = false;
 			try {
 				pComponent = ReactTestUtils.findRenderedDOMComponentWithTag( testInstance, 'p' );
-				assert.ok(!pComponent, "there is no p anymore");
+				assert.ok(!pComponent, 'there is no p anymore');
 			} catch (e) {
-				assert.ok(true, "was unable to find a `p` within DOM");
+				assert.ok(true, 'was unable to find a `p` within DOM');
 			}
 
 			var spanComponent = ReactTestUtils.findRenderedDOMComponentWithTag( testInstance, 'span' );
 
-			assert.ok(spanComponent, "span inserted");
+			assert.ok(spanComponent, 'span inserted');
 
 		});
 
@@ -363,7 +363,7 @@ QUnit.module('react-view-model with DefineMap', () => {
 			let ParentVM = DefineMap.extend('ParentVM', {
 				children: {
 					Type: ChildVM.List,
-					value: [{title: "one"}]
+					value: [{title: 'one'}]
 				}
 			});
 			var ParentComponent = reactViewModel(ParentVM, function ParentComponent(parentVm) {
@@ -377,7 +377,7 @@ QUnit.module('react-view-model with DefineMap', () => {
 			});
 			const testInstance = ReactTestUtils.renderIntoDocument( <ParentComponent/> );
 			var divElement = ReactTestUtils.findRenderedDOMComponentWithTag( testInstance, 'div' );
-			assert.ok(divElement.getElementsByTagName.length, "children inserted");
+			assert.ok(divElement.getElementsByTagName.length, 'children inserted');
 		});
 
 	});
@@ -469,12 +469,12 @@ QUnit.module('react-view-model with DefineMap', () => {
 					type: 'any',
 					value: function() {
 						return function() {
-							assert.notEqual(this, vm, `the context of defined functions are not bound`);
+							assert.notEqual(this, vm, 'the context of defined functions are not bound');
 						};
 					},
 				},
 				method() {
-					assert.equal(this, vm, `the context of vm method calls are bound to the vm`);
+					assert.equal(this, vm, 'the context of vm method calls are bound to the vm');
 				}
 			});
 			let ViewModel = BaseMap.extend('ReactViewModel4', {

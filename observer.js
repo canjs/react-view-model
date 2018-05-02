@@ -11,7 +11,7 @@ export default function Observer(onUpdate) {
 	this.onUpdate = onUpdate;
 
 	var self = this;
-	this.onDependencyChange = function(newVal, oldVal) {
+	this.onDependencyChange = function onDependencyChange(newVal, oldVal) {
 		self.dependencyChange(this, newVal, oldVal);
 	};
 }

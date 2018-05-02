@@ -192,7 +192,7 @@ function getConnectedComponent(BaseComponent) {
 		if (typeof BaseComponent.prototype.componentWillReceiveProps === 'function') {
 			ConnectedComponent.prototype.componentWillReceiveProps = function(props, state) {
 				return BaseComponent.prototype.componentWillReceiveProps.call(this, props._vm, state);
-			}
+			};
 		}
 
 		return ConnectedComponent;

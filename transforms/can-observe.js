@@ -6,6 +6,7 @@ export default {
 		return Object.assign(new ViewModel(), props);
 	},
 	updateViewModel(viewModel, nextProps) {
+		// debugger;
 		Object.assign(viewModel, nextProps);
 	},
 	getPropTypes(config) {

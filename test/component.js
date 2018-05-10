@@ -1,4 +1,6 @@
 import QUnit from 'steal-qunit';
+import React from 'react';
+import ReactTestUtils from 'react-dom/test-utils';
 
 import reflect from 'can-reflect';
 import observe, { Object as ObserveObject } from 'can-observe';
@@ -77,5 +79,24 @@ QUnit.module('Component', () => {
 		instance.state = { bam: 'quux' };
 		assert.equal(instance.state.foo, 'bar');
 		assert.equal(instance.state.bam, 'quux');
+	});
+
+	QUnit.test('Works with getDerivedStateFromProps', (assert) => {
+		class TestComponent extends Component {
+			static getDerivedStateFromProps(props, state) {
+				state.foo = props.bar;
+				return null;
+			}
+			constructor(props) {
+				super(props);
+				this.state = {};
+			}
+			render() {
+				const { foo } = this.state;
+				return <div>{foo}</div>;
+			}
+		}
+		const testInstance = ReactTestUtils.renderIntoDocument( <TestComponent bar="bar" /> );
+		assert.equal(testInstance.state.foo, 'bar');
 	});
 });

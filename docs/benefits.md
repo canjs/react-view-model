@@ -241,3 +241,5 @@ render() {
 ## 🔥 Less Time Rendering 🔥
 
 In the example above, since the properties being modified (`offset` and `limit`) are not used by the main component itself, it does not have to re-render when they change; only those components which use the modified properties will be updated. As `setState` isn't being called anymore when pagination changes, this avoids re-rendering App 🔥.
+
+Next: [Get Started with StealJS](./getting-started-steal.md) or [Get Started with Webpack](./getting-started-webpack.md)

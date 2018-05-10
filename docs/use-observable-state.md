@@ -94,3 +94,5 @@ render() {
   );
 }
 ```
+
+Next: [Higher Order Components](./use-higher-order-components.md)

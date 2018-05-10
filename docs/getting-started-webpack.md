@@ -43,3 +43,5 @@ class App extends ylem.Component { // 👀
 
 export default App;
 ```
+
+Next: [Observable State](./use-observable-state.md)

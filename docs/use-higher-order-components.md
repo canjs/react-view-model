@@ -55,3 +55,5 @@ export default class MenuToggle extends Component {
 ```
 
 The `connect()` method is also aliased as `withViewModel()`, following the pattern from the HoC library [Recompose](https://github.com/acdlite/recompose), and works well alongside the Recompose API and all the features Recompose offers.
+
+Next: [ViewModel Components](./use-viewmodel-components.md)

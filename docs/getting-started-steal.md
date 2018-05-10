@@ -74,3 +74,5 @@ ReactDOM.render(<Counter />, container);
 ```
 
 Want to learn more about StealJS? [Check out the docs!](https://stealjs.com/docs/)
+
+Next: [Observable State](./use-observable-state.md)

@@ -89,19 +89,18 @@ class Clock extends ylem.Component { // 👀
 
 Notice that instead of calling `.setState`, we were able to just set the `.date` property? This seemingly minor change has all sorts of benefits we will explore in the following sections:
 
-+ [Easy for developers of all skill levels to understand 💡](#-easy-for-developers-of-all-skill-levels-to-understand-)
-+ [Less boilerplate 💆](#-remove-boilerplate-)
-+ [Less time re-rendering 🔥](#-less-time-rendering-)
++ Easy for developers of all skill levels to understand 💡
++ Less boilerplate 💆
++ Less time re-rendering 🔥
 
-Are you ready to try it? [Go here to get started!](#get-started)
+Are you ready to try it? [Get Started with StealJS](./getting-started-steal.md) or [Get Started with Webpack](./getting-started-webpack.md)
 
-Have lingering questions, or want to know advanced benefits? Read more about how ylem:
+Have lingering questions, or want to know more? [Read more about ylem's benefits](./benefits.md):
 - Is easy to debug.
 - Creates unit-testable `ViewModel` types that protect state.
 - Creates unit-testable `views` with higher order components.
 - Connects to restful and real-time services.
 
-<button>Learn More</button>
 
 ## License
-[MIT](./LICENSE)
+[MIT](../LICENSE.md)

@@ -31,3 +31,5 @@ export default MenuToggle;
 ```
 
 This allows full control over your rendering, while still offering the auto-updating and easy state management that the CanJS observables and ecosystem have to offer.
+
+Next: [Read more about ylem's benefits](./benefits.md)

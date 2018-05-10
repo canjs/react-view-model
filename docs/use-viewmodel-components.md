@@ -4,27 +4,27 @@ The `createViewModelComponent()` function provided by **ylem** produces React Co
 
 ```js
 export class ViewModel extends ylem.Object {
-	showMenu = true;
+  showMenu = true;
 
-	toggleMenu = () => {
-		this.showMenu = !this.showMenu;
-	}
+  toggleMenu = () => {
+    this.showMenu = !this.showMenu;
+  }
 }
 
 export const VMComponent = createViewModelComponent(ViewModel);
 
 const MenuToggle = () => (
-	<div>
-		...
-		<VMComponent render={ ({ showMenu, toggleMenu }) => (
-			<button onClick={toggleMenu} />
-			{ showMenu
-				? <Menu />
-				: null
-			}
-		)} />
-		...
-	</div>
+  <div>
+    ...
+    <VMComponent render={ ({ showMenu, toggleMenu }) => (
+      <button onClick={toggleMenu} />
+      { showMenu
+        ? <Menu />
+        : null
+      }
+    )} />
+    ...
+  </div>
 );
 
 export default MenuToggle;

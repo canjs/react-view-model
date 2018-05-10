@@ -10,33 +10,33 @@ One of the benefits of using observable values is that changing the value just w
 
 ```js
 class List extends ylem.Component { // 👀
-	constructor(props) {
-		super(props);
-		this.state = { items: [] };
-	}
+  constructor(props) {
+    super(props);
+    this.state = { items: [] };
+  }
 
-	add = () => {
-		this.state.items.push(Math.floor(Math.random() * 100)); // 👀
-	}
+  add = () => {
+    this.state.items.push(Math.floor(Math.random() * 100)); // 👀
+  }
 
-	replace(index) {
-		this.state.item[index] = Math.floor(Math.random() * 100); // 👀
-	}
+  replace(index) {
+    this.state.item[index] = Math.floor(Math.random() * 100); // 👀
+  }
 
-	render() {
-		return (
-			<div>
-				<ul>
-					{ this.state.items.map((item, index) => (
-						<li key={index} onClick={() => this.replace(index)}>
-							{item}
-						</li>
-					)) }
-				</ul>
-				<button onClick={this.add}>Add</button>
-			</div>
-		)
-	}
+  render() {
+    return (
+      <div>
+        <ul>
+          { this.state.items.map((item, index) => (
+            <li key={index} onClick={() => this.replace(index)}>
+              {item}
+            </li>
+          )) }
+        </ul>
+        <button onClick={this.add}>Add</button>
+      </div>
+    )
+  }
 }
 ```
 
@@ -63,43 +63,43 @@ Instead of all the boilerplate, you can simply pass state:
 
 ```js
 class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			limit: 10,
-			offset: 20,
-			count: 300
-		};
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      limit: 10,
+      offset: 20,
+      count: 300
+    };
+  }
 
-	setLimit = (limit) => {
-		this.setState({ limit });
-	}
+  setLimit = (limit) => {
+    this.setState({ limit });
+  }
 
-	setOffset = (offset) => {
-		this.setState({ offset });
-	}
+  setOffset = (offset) => {
+    this.setState({ offset });
+  }
 
-	render() {
-		const { limit, offset, count } = this.state;
+  render() {
+    const { limit, offset, count } = this.state;
 
-		return (
-			<div>
-				<NextPrev
-					limit={limit}
-					offset={offset}
-					count={count}
-					setOffset={this.setOffset}
-				/>
-				<Grid
-					limit={limit}
-					offset={offset}
-					count={count}
-					setLimit={this.setLimit}
-				/>
-			</div>
-		);
-	}
+    return (
+      <div>
+        <NextPrev
+          limit={limit}
+          offset={offset}
+          count={count}
+          setOffset={this.setOffset}
+        />
+        <Grid
+          limit={limit}
+          offset={offset}
+          count={count}
+          setLimit={this.setLimit}
+        />
+      </div>
+    );
+  }
 }
 ```
 
@@ -108,23 +108,23 @@ class App extends React.Component {
 
 ```js
 class App extends ylem.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			limit: 10,
-			offset: 20,
-			count: 300
-		};
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      limit: 10,
+      offset: 20,
+      count: 300
+    };
+  }
 
-	render() {
-		return (
-			<div>
-				<NextPrev paginate={this.state} />
-				<Grid paginate={this.state} />
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div>
+        <NextPrev paginate={this.state} />
+        <Grid paginate={this.state} />
+      </div>
+    );
+  }
 }
 ```
 
@@ -147,12 +147,12 @@ And the paginate control would look like:
 
 ```js
 render() {
-	const { limit, offset } = this.state;
-	return (
-		<button onClick={() =>
-			this.props.setOffset( offset + limit );
-		}>NEXT<button>
-	);
+  const { limit, offset } = this.state;
+  return (
+    <button onClick={() =>
+      this.props.setOffset( offset + limit );
+    }>NEXT<button>
+  );
 }
 ```
 
@@ -161,12 +161,12 @@ render() {
 
 ```js
 render() {
-	const { limit, offset } = this.props.paginate;
-	return (
-		<button onClick={() =>
-			this.props.paginate.offset = ( offset + limit )
-		}>NEXT<button>
-	);
+  const { limit, offset } = this.props.paginate;
+  return (
+    <button onClick={() =>
+      this.props.paginate.offset = ( offset + limit )
+    }>NEXT<button>
+  );
 }
 ```
 
@@ -199,24 +199,24 @@ Instead of all the boilerplate, you can simply pass state:
 
 ```js
 render() {
-	const { limit, offset, count } = this.state;
+  const { limit, offset, count } = this.state;
 
-	return (
-		<div>
-			<NextPrev
-				limit={limit}
-				offset={offset}
-				count={count}
-				setOffset={this.setOffset}
-			/>
-			<Grid
-				limit={limit}
-				offset={offset}
-				count={count}
-				setLimit={this.setLimit}
-			/>
-		</div>
-	);
+  return (
+    <div>
+      <NextPrev
+        limit={limit}
+        offset={offset}
+        count={count}
+        setOffset={this.setOffset}
+      />
+      <Grid
+        limit={limit}
+        offset={offset}
+        count={count}
+        setLimit={this.setLimit}
+      />
+    </div>
+  );
 }
 ```
 
@@ -225,12 +225,12 @@ render() {
 
 ```js
 render() {
-	return (
-		<div>
-			<NextPrev paginate={this.state} />
-			<Grid paginate={this.state} />
-		</div>
-	);
+  return (
+    <div>
+      <NextPrev paginate={this.state} />
+      <Grid paginate={this.state} />
+    </div>
+  );
 }
 ```
 

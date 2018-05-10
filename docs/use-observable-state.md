@@ -4,29 +4,29 @@ The easiest way to use **ylem** is as a replacement for React's `state`, requiri
 
 ```js
 class Clock extends ylem.Component { // 👀
-	constructor(props) {
-		super(props);
-		this.state = { date: new Date() };
-	}
+  constructor(props) {
+    super(props);
+    this.state = { date: new Date() };
+  }
 
-	componentDidMount() {
-		this.timerID = setInterval(() => {
-			this.state.date = new Date(); // 👀
-		}, 1000);
-	}
+  componentDidMount() {
+    this.timerID = setInterval(() => {
+      this.state.date = new Date(); // 👀
+    }, 1000);
+  }
 
-	componentWillUnmount() {
-		clearInterval(this.timerID);
-	}
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
 
-	render() {
-		const { date } = this.state;
-		return (
-			<h2>
-				It is {date.toLocaleTimeString()}.
-			</h2>
-		);
-	}
+  render() {
+    const { date } = this.state;
+    return (
+      <h2>
+        It is {date.toLocaleTimeString()}.
+      </h2>
+    );
+  }
 }
 ```
 
@@ -36,52 +36,52 @@ If passing state around so it can be mutated directly seems too "wild west", use
 
 ```js
 class PaginateState extends ylem.Object {
-	constructor(data) {
-		super(data);
+  constructor(data) {
+    super(data);
 
-		this.count = this.count || Infinity;
-		this.offset = this.offset || 0;
-		this.limit = this.limit || 10;
-	}
+    this.count = this.count || Infinity;
+    this.offset = this.offset || 0;
+    this.limit = this.limit || 10;
+  }
 
-	set offset(newOffset) {
-		this._offset = Math.max(
-			0,
-			Math.min(
-				!isNaN(this.count - 1) ? this.count - 1 : Infinity,
-				newOffset
-			)
-		);
-	}
-	get offset() {
-		return this._offset;
-	}
+  set offset(newOffset) {
+    this._offset = Math.max(
+      0,
+      Math.min(
+        !isNaN(this.count - 1) ? this.count - 1 : Infinity,
+        newOffset
+      )
+    );
+  }
+  get offset() {
+    return this._offset;
+  }
 
-	next = () => {
-		this.offset += this.limit;
-	}
+  next = () => {
+    this.offset += this.limit;
+  }
 
-	// ...
+  // ...
 }
 
 class App extends Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.state = new PaginateState({
-			offset: 20,
-			limit: 10,
-		});
-	}
+    this.state = new PaginateState({
+      offset: 20,
+      limit: 10,
+    });
+  }
 
-	render() {
-		return (
-			<div>
-				<NextPrev paginate={this.state} />
-				<Grid paginate={this.state} />
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div>
+        <NextPrev paginate={this.state} />
+        <Grid paginate={this.state} />
+      </div>
+    );
+  }
 }
 ```
 
@@ -89,8 +89,8 @@ Then the paginate control might look like:
 
 ```js
 render() {
-	return (
-		<button onClick={this.props.paginate.next}>NEXT<button>
-	);
+  return (
+    <button onClick={this.props.paginate.next}>NEXT<button>
+  );
 }
 ```

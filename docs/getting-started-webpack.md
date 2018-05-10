@@ -17,28 +17,28 @@ import './App.css';
 import ylem from 'ylem';
 
 class App extends ylem.Component { // 👀
-	constructor(props) {
-		super(props);
-		this.state = { count: 0 };
-	}
+  constructor(props) {
+    super(props);
+    this.state = { count: 0 };
+  }
 
-	increment = () => {
-		this.state.count++; // 👀
-	}
+  increment = () => {
+    this.state.count++; // 👀
+  }
 
-	render() {
-		return (
-			<div className="App">
-				<header className="App-header">
-					<img src={logo} className="App-logo" alt="logo" />
-					<p>
-						Count: {this.state.count}
-					</p>
-					<a className="App-link" onClick={this.increment}>+1</a>
-				</header>
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            Count: {this.state.count}
+          </p>
+          <a className="App-link" onClick={this.increment}>+1</a>
+        </header>
+      </div>
+    );
+  }
 }
 
 export default App;

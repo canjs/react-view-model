@@ -12,18 +12,18 @@ You will need to add a `steal` section to your `package.json`. We recommend usin
 
 ```json
 {
-	"main": "index.js",
-	"scripts": {
-		"develop": "done-serve --develop",
-		"build": "steal-tools build"
-	},
-	"steal": {
-		"babelOptions": {
-			"plugins": [
-				"transform-class-properties"
-			]
-		}
-	}
+  "main": "index.js",
+  "scripts": {
+    "develop": "done-serve --develop",
+    "build": "steal-tools build"
+  },
+  "steal": {
+    "babelOptions": {
+      "plugins": [
+        "transform-class-properties"
+      ]
+    }
+  }
 }
 ```
 
@@ -32,13 +32,13 @@ You will also need an `index.html` to load in the browser.
 ```html
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>ThreatResponse Demo</title>
-	</head>
-	<body>
-		<div id="app"></div>
-		<script src="node_modules/steal/steal.js"></script>
-	</body>
+  <head>
+    <title>ThreatResponse Demo</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="node_modules/steal/steal.js"></script>
+  </body>
 </html>
 ```
 
@@ -50,23 +50,23 @@ import ReactDOM from 'react-dom';
 import ylem from 'ylem';
 
 class Counter extends ylem.Component { // 👀
-	constructor(props) {
-		super(props);
-		this.state = { count: 0 };
-	}
+  constructor(props) {
+    super(props);
+    this.state = { count: 0 };
+  }
 
-	increment = () => {
-		this.state.count++; // 👀
-	}
+  increment = () => {
+    this.state.count++; // 👀
+  }
 
-	render() {
-		return (
-			<div>
-				Count: {this.state.count}<br />
-				<button onClick={this.increment}>+1</Button>
-			</div>
-		)
-	}
+  render() {
+    return (
+      <div>
+        Count: {this.state.count}<br />
+        <button onClick={this.increment}>+1</Button>
+      </div>
+    )
+  }
 }
 
 const container = document.getElementById('#app');

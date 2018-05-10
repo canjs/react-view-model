@@ -26,29 +26,29 @@ With ylem you can simply change the state, any of the values within state and re
 
 ```js
 class Clock extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = { date: new Date() };
-	}
+  constructor(props) {
+    super(props);
+    this.state = { date: new Date() };
+  }
 
-	componentDidMount() {
-		this.timerID = setInterval(() => {
-			this.setState({ date: new Date() });
-		}, 1000);
-	}
+  componentDidMount() {
+    this.timerID = setInterval(() => {
+      this.setState({ date: new Date() });
+    }, 1000);
+  }
 
-	componentWillUnmount() {
-		clearInterval(this.timerID);
-	}
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
 
-	render() {
-		const { date } = this.state;
-		return (
-			<h2>
-				It is {date.toLocaleTimeString()}.
-			</h2>
-		);
-	}
+  render() {
+    const { date } = this.state;
+    return (
+      <h2>
+        It is {date.toLocaleTimeString()}.
+      </h2>
+    );
+  }
 }
 ```
 
@@ -57,29 +57,29 @@ class Clock extends React.Component {
 
 ```js
 class Clock extends ylem.Component { // 👀
-	constructor(props) {
-		super(props);
-		this.state = { date: new Date() };
-	}
+  constructor(props) {
+    super(props);
+    this.state = { date: new Date() };
+  }
 
-	componentDidMount() {
-		this.timerID = setInterval(() => {
-			this.state.date = new Date(); // 👀
-		}, 1000);
-	}
+  componentDidMount() {
+    this.timerID = setInterval(() => {
+      this.state.date = new Date(); // 👀
+    }, 1000);
+  }
 
-	componentWillUnmount() {
-		clearInterval(this.timerID);
-	}
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
 
-	render() {
-		const { date } = this.state;
-		return (
-			<h2>
-				It is {date.toLocaleTimeString()}.
-			</h2>
-		);
-	}
+  render() {
+    const { date } = this.state;
+    return (
+      <h2>
+        It is {date.toLocaleTimeString()}.
+      </h2>
+    );
+  }
 }
 ```
 

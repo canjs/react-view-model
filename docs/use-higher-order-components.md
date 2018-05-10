@@ -4,21 +4,21 @@ The `connect()` method provided by **ylem** is a HoC factory function that follo
 
 ```js
 export class ViewModel extends ylem.Object {
-	showMenu = true;
+  showMenu = true;
 
-	toggleMenu = () => {
-		this.showMenu = !this.showMenu;
-	}
+  toggleMenu = () => {
+    this.showMenu = !this.showMenu;
+  }
 }
 
 export const MenuToggle = ({ showMenu, toggleMenu }) => (
-	<div>
-		<button onClick={toggleMenu} />
-		{ showMenu
-			? <Menu />
-			: null
-		}
-	</div>
+  <div>
+    <button onClick={toggleMenu} />
+    { showMenu
+      ? <Menu />
+      : null
+    }
+  </div>
 );
 
 export default connect(ViewModel)(MenuToggle);
@@ -30,27 +30,27 @@ If you are able to use [ES Decorators](https://babeljs.io/docs/plugins/transform
 
 ```js
 export class ViewModel extends ylem.Object {
-	showMenu = true;
+  showMenu = true;
 
-	toggleMenu = () => {
-		this.showMenu = !this.showMenu;
-	}
+  toggleMenu = () => {
+    this.showMenu = !this.showMenu;
+  }
 }
 
 @connect(ViewModel)
 export default class MenuToggle extends Component {
-	render() {
-		const { showMenu, toggleMenu } = this.props;
-		return (
-			<div>
-				<button onClick={toggleMenu} />
-				{ showMenu
-					? <Menu />
-					: null
-				}
-			</div>
-		);
-	}
+  render() {
+    const { showMenu, toggleMenu } = this.props;
+    return (
+      <div>
+        <button onClick={toggleMenu} />
+        { showMenu
+          ? <Menu />
+          : null
+        }
+      </div>
+    );
+  }
 }
 ```
 

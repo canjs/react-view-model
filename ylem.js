@@ -7,11 +7,11 @@ const withViewModel = connect;
 namespace.reactViewModel = {
 	connect,
 	withViewModel,
-	Component
+	Component,
 };
 
 export {
 	connect,
 	withViewModel,
-	Component
+	Component,
 };

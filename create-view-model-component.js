@@ -1,23 +1,19 @@
 import React from 'react';
-import { createNewComponentClass } from './observable-component';
-
-const isEmptyChildren = (children: any): boolean =>
-	React.Children.count(children) === 0;
+import { createNewComponentClass, getConnectedComponent } from './observable-component';
 
 export function createViewModelComponent( ViewModelClass ) {
 	const ViewModelComponent = createNewComponentClass(
 		ViewModelClass,
 		props => props,
 		(viewModel, { component, render, children }) => {
-			return component
-				? React.createElement(component, viewModel)
-				: render
-					? render(viewModel)
+			return render
+				? render(viewModel)
+				: component
+					? React.createElement(getConnectedComponent(component), { _vm: viewModel })
 					: children // children come last, always called
 						? typeof children === 'function'
 							? children(viewModel)
-							: !isEmptyChildren(children) ? React.Children.only(children)
-								: null
+							: children
 						: null;
 		}
 	);

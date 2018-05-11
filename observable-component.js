@@ -85,5 +85,73 @@ export function createNewComponentClass(ViewModel, transform, render) {
 			return render(this.viewModel, this.props);
 		}
 	};
+}
 
+export function getConnectedComponent(BaseComponent) {
+	if (BaseComponent.prototype instanceof Component) {
+		class ConnectedComponent extends BaseComponent {
+			constructor(props) {
+				const proxy = typeof Proxy === 'undefined'
+					? Object.assign({}, props._vm, {
+						_raw: props,
+						_vm: props._vm,
+					})
+					: new Proxy(props._vm, {
+						get(target, prop) {
+							if (prop === '_raw') {
+								return props;
+							}
+							if (prop === '_vm') {
+								return target;
+							}
+
+							return target[prop];
+						},
+					})
+				;
+
+				super(proxy);
+
+				//!steal-remove-start
+				this._raw_props = true;
+				//!steal-remove-end
+			}
+
+			//!steal-remove-start
+			componentWillMount() {
+				this._raw_props = false;
+
+				if (typeof super.componentWillMount === 'function') {
+					super.componentWillMount();
+				}
+			}
+			//!steal-remove-end
+
+			set props(props) {
+				if (this._props && props === this._props._vm) {
+					return;
+				}
+
+				this._props = props;
+			}
+
+			get props() {
+				//!steal-remove-start
+				if (this._raw_props) {
+					return this._props._raw;
+				}
+				//!steal-remove-end
+
+				return this._props._vm;
+			}
+		}
+
+		return ConnectedComponent;
+	}
+
+	const ConnectedComponent = ({ _vm }) => {
+		return BaseComponent(_vm);
+	};
+
+	return ConnectedComponent;
 }

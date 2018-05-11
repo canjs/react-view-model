@@ -1,10 +1,10 @@
 import QUnit from 'steal-qunit';
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactTestUtils from 'react-dom/test-utils';
 
-import {Object as ObserveObject} from 'can-observe';
-import {createViewModelComponent} from 'ylem';
+import { Object as ObserveObject } from 'can-observe';
+import { createViewModelComponent } from 'ylem';
 
 QUnit.module('`createViewModelComponent` with can-observe', () => {
 

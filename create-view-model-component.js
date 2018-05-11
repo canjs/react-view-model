@@ -1,7 +1,7 @@
 import React from 'react';
 import { createNewComponentClass, getConnectedComponent } from './observable-component';
 
-export function createViewModelComponent( ViewModelClass ) {
+export default function createViewModelComponent( ViewModelClass ) {
 	const ViewModelComponent = createNewComponentClass(
 		ViewModelClass,
 		props => props,

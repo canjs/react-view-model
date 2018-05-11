@@ -33,7 +33,7 @@ QUnit.module('`createViewModelComponent` with can-observe', () => {
 			}
 		}
 
-		const testInstance = ReactTestUtils.renderIntoDocument(<TestComponent/>);
+		const testInstance = ReactTestUtils.renderIntoDocument(<TestComponent />);
 		const divComponent = ReactTestUtils.findRenderedDOMComponentWithTag(testInstance, 'div');
 
 		assert.equal(divComponent.innerText, 'foobar', 'rendered component has the correct contents');
@@ -62,7 +62,7 @@ QUnit.module('`createViewModelComponent` with can-observe', () => {
 			}
 		}
 
-		const testInstance = ReactTestUtils.renderIntoDocument(<TestComponent/>);
+		const testInstance = ReactTestUtils.renderIntoDocument(<TestComponent />);
 		const divComponent = ReactTestUtils.findRenderedDOMComponentWithTag(testInstance, 'div');
 
 		assert.equal(divComponent.innerText, 'foobar', 'rendered component has the correct contents');
@@ -96,7 +96,7 @@ QUnit.module('`createViewModelComponent` with can-observe', () => {
 			}
 		}
 
-		const testInstance = ReactTestUtils.renderIntoDocument(<TestComponent/>);
+		const testInstance = ReactTestUtils.renderIntoDocument(<TestComponent />);
 		const divComponent = ReactTestUtils.findRenderedDOMComponentWithTag(testInstance, 'div');
 
 		assert.equal(divComponent.innerText, 'foobar', 'rendered component has the correct contents');

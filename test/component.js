@@ -85,11 +85,6 @@ QUnit.module('Component', () => {
 		class TestComponent extends Component {
 			static getDerivedStateFromProps(props, state) {
 				state.foo = props.bar;
-				return null;
-			}
-			constructor(props) {
-				super(props);
-				this.state = {};
 			}
 			render() {
 				const { foo } = this.state;
@@ -98,5 +93,27 @@ QUnit.module('Component', () => {
 		}
 		const testInstance = ReactTestUtils.renderIntoDocument( <TestComponent bar="bar" /> );
 		assert.equal(testInstance.state.foo, 'bar');
+	});
+
+	QUnit.test('Warns if getDerivedStateFromProps returns anything', (assert) => {
+		/* eslint-disable no-console */
+		const vals = [null, {}];
+		assert.expect(vals.length);
+		const oldWarn = console.warn;
+		console.warn = function() {
+			assert.ok(true);
+		};
+		vals.forEach(val => {
+			class TestComponent extends Component {
+				static getDerivedStateFromProps() {
+					return val;
+				}
+				render() {
+					return <div />;
+				}
+			}
+			ReactTestUtils.renderIntoDocument( <TestComponent bar="bar" /> );
+		});
+		console.warn = oldWarn;
 	});
 });

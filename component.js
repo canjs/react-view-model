@@ -6,10 +6,12 @@ const gdsfp = Symbol.for('ylem.component.gdsfp');
 
 const makeDerive = (ctor) => {
 	const oldDerive = ctor.getDerivedStateFromProps;
+
 	ctor.getDerivedStateFromProps = (nextProps, state) => {
 		if (oldDerive && oldDerive(nextProps, state) !== undefined) {
 			console.warn('ylem: you should not return a value from getDerivedStateFromProps'); // eslint-disable-line no-console
 		}
+
 		return null;
 	};
 };
@@ -47,6 +49,7 @@ class Component extends ObservableComponent {
 				enumerable: false,
 				configurable: true
 			});
+
 			makeDerive(ctor);
 		}
 	}

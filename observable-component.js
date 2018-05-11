@@ -46,3 +46,44 @@ export default class ObservableComponent extends Component {
 		this.observer.teardown();
 	}
 }
+
+export function createNewComponentClass(ViewModel, transform, render) {
+	return class extends ObservableComponent {
+		static getDerivedStateFromProps(nextProps, { observer, viewModel }) {
+			observer.ignore(() => {
+				Object.assign(viewModel, transform(nextProps));
+			});
+
+			return null;
+		}
+
+		constructor(props) {
+			super(props);
+
+			this.observer.ignore(() => {
+				this.viewModel = new ViewModel();
+				Object.assign(this.viewModel, transform(props));
+			});
+
+			this.state = {
+				viewModel: this.viewModel,
+				observer: this.observer
+			};
+		}
+
+		shouldComponentUpdate() {
+			return !!this.viewModel;
+		}
+
+		componentWillUnmount() {
+			delete this.viewModel;
+
+			super.componentWillUnmount();
+		}
+
+		render() {
+			return render(this.viewModel, this.props);
+		}
+	};
+
+}

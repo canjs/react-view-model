@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import canReflect from 'can-reflect';
-import ObservableComponent from './observable-component';
+import { createNewComponentClass } from './observable-component';
 
 //!steal-remove-start
 (function(version) {
@@ -45,46 +45,9 @@ export default function connect(ViewModel, transform = props => props) {
 			});
 		}
 		//!steal-remove-end
-
-		class UpgradedComponent extends ObservableComponent {
-			static getDerivedStateFromProps(nextProps, { observer, viewModel }) {
-				observer.ignore(() => {
-					Object.assign(viewModel, transform(nextProps));
-				});
-
-				return null;
-			}
-
-			constructor(props) {
-				super(props);
-
-				this.observer.ignore(() => {
-					this.viewModel = new ViewModel();
-					Object.assign(this.viewModel, transform(props));
-				});
-
-				this.state = {
-					viewModel: this.viewModel,
-					observer: this.observer
-				};
-			}
-
-			shouldComponentUpdate() {
-				return !!this.viewModel;
-			}
-
-			componentWillUnmount() {
-				delete this.viewModel;
-
-				super.componentWillUnmount();
-			}
-
-			render() {
-				const _vm = this.viewModel;
-
-				return React.createElement(ConnectedComponent, { _vm });
-			}
-		}
+		const UpgradedComponent = createNewComponentClass(ViewModel, transform, _vm => {
+			return React.createElement(ConnectedComponent, { _vm });
+		});
 
 		//!steal-remove-start
 		UpgradedComponent.displayName = `${ BaseComponent.displayName || BaseComponent.name || 'Component' }~ylem`;

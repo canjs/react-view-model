@@ -1,55 +1,29 @@
 ## 💡 Easy for developers of all skill levels to understand. 💡
 
-**ylem** supports a simple object-oriented pattern that humans are built to understand.
+**ylem** enables the use of simple object-oriented patterns that developers already understand. There are no APIs to learn for updating state - you can simply set properties and modify arrays exactly like you would in plain JavaScript:
 
-> Object oriented programming leverages the fact that humans have millions of years of evolution invested in conceiving of the world in terms of things which have properties and associated methods of doing things with them. A salt shaker has a property of the amount of salt in it, and can be shaken.
->
-> &mdash; <cite>Tim Boudreau, Oracle Labs</cite>
-
-One of the benefits of using observable values is that changing the value just works, much like in VueJS. For instance, when dealing with arrays you can `.pop()` or `.splice()`.
-
-```js
-class List extends ylem.Component { // 👀
-  constructor(props) {
-    super(props);
-    this.state = { items: [] };
-  }
-
-  add = () => {
-    this.state.items.push(Math.floor(Math.random() * 100)); // 👀
-  }
-
-  replace(index) {
-    this.state.item[index] = Math.floor(Math.random() * 100); // 👀
-  }
-
-  render() {
-    return (
-      <div>
-        <ul>
-          { this.state.items.map((item, index) => (
-            <li key={index} onClick={() => this.replace(index)}>
-              {item}
-            </li>
-          )) }
-        </ul>
-        <button onClick={this.add}>Add</button>
-      </div>
-    )
-  }
-}
+```
+state.todos.push({ title: 'Dishes', complete: false });
+state.todos[0].complete = true;
+state.count++;
 ```
 
-## 💆 Remove boilerplate 💆
+### How ylem works
 
-Often, many components operate on the same state. With plain react, the only way to re-render a component is to call `.setState`. This makes it cumbersome to setup lots of lines of communication. For example, lets say we have several pagination components that work together.
+**yelm** is "observing" your state and will automatically re-render your components when anything changes - you should never call `setState`. More importantly, **ylem** only re-renders your components when something _actually_ changes. This means you never have to implement `shouldComponentUpdate` or use `PureComponent`. Humans can never implement `shouldComponentUpdate` across an entire app as efficiently as a code solution like **ylem** . This alone will save your team hours of time while increasing your apps rendering efficiency (for free - keep reading).
+
+## 💆 Removes boilerplate 💆
+
+In the real world many components operate on the same state. With plain react you generally pass callbacks around which eventually call `setState`. With tools like Redux you use actions and reducers which introduce "conventions" and separation of code in a way that feels unnatural. This distribution of state logic makes it cumbersome to setup complex lines of communication across multiple components. 
+
+Lets say we have a simple paginated grid. It is immediately obvious how much less code is required with **ylem**:
 
 <table>
 <tr><th>React</th><th>ylem</th></tr>
 <tr>
 <td>
 
-With React alone, you might build your app like:
+With React alone, you might build your app like this:
 
 </td>
 <td>
@@ -133,12 +107,12 @@ class App extends ylem.Component {
 <tr>
 <td>
 
-Then a paginate control might look like:
+The NextPrev component might look like this:
 
 </td>
 <td>
 
-And the paginate control would look like:
+Now the NextPrev component can set state directly:
 
 </td>
 </tr>
@@ -146,100 +120,43 @@ And the paginate control would look like:
 <td>
 
 ```js
-render() {
-  const { limit, offset } = this.state;
-  return (
+const NextPrev = ({ limit, offset, setOffset }) =>
+  <div>
     <button onClick={() =>
-      this.props.setOffset( offset + limit );
+      setOffset( offset + limit );
     }>NEXT<button>
-  );
-}
+    <button onClick={() =>
+      setOffset( offset - limit );
+    }>PREV<button>
+  </div>
+};
 ```
 
 </td>
 <td>
 
 ```js
-render() {
-  const { limit, offset } = this.props.paginate;
-  return (
+const NextPrev = ({ paginate }) =>
+  <div>
     <button onClick={() =>
-      this.props.paginate.offset = ( offset + limit )
+      paginate.offset = ( paginate.offset + paginate.limit )
     }>NEXT<button>
-  );
-}
+    <button onClick={() =>
+      paginate.offset = ( paginate.offset - paginate.limit )
+    }>NEXT<button>
+  </div>
+};
 ```
 
 </td>
 </tr>
 </table>
 
-As `setState` isn't being called anymore when pagination changes, this avoids re-rendering `App` and anything else that it may render 🔥.
-
-## Less Boilerplate
-
-As shown above, you can omit many properties and callbacks, in favor of simply passing portions or your state.
-
-<table>
-<tr><th>React</th><th>ylem</th></tr>
-<tr>
-<td>
-
-With React alone, you might render like:
-
-</td>
-<td>
-
-Instead of all the boilerplate, you can simply pass state:
-
-</td>
-</tr>
-<tr>
-<td>
-
-```js
-render() {
-  const { limit, offset, count } = this.state;
-
-  return (
-    <div>
-      <NextPrev
-        limit={limit}
-        offset={offset}
-        count={count}
-        setOffset={this.setOffset}
-      />
-      <Grid
-        limit={limit}
-        offset={offset}
-        count={count}
-        setLimit={this.setLimit}
-      />
-    </div>
-  );
-}
-```
-
-</td>
-<td>
-
-```js
-render() {
-  return (
-    <div>
-      <NextPrev paginate={this.state} />
-      <Grid paginate={this.state} />
-    </div>
-  );
-}
-```
-
-</td>
-</tr>
-</table>
 
 ## 🔥 Less Time Rendering 🔥
 
-In the example above, since the properties being modified (`offset` and `limit`) are not used by the main component itself, it does not have to re-render when they change; only those components which use the modified properties will be updated. As `setState` isn't being called anymore when pagination changes, this avoids re-rendering App 🔥.
+In the example above, the `offset` and `limit` properties are being **read and updated by child components only**. The App component does not care about the values for offset/limit or the logic for updating those values. However, every time those values change, the plain react example must re-render the App and its children. With **ylem**, only the child components are re-rendered - meaning 33% less rendering with a simple paginated grid. Hopefully it is obvious how fewer renders would improve the efficiency of a larger application.
+
+> **Note:** The plain react example could be implemented several different ways - but that only introduces more "convention" and developer decision making which eventually compromises the stability and consistency of your app.
 
 Next: [Get Started with StealJS](./getting-started-steal.md) or [Get Started with Webpack](./getting-started-webpack.md)

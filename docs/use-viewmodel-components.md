@@ -17,13 +17,17 @@ export class ViewModel extends ylem.Object {
 export const VMComponent = createViewModelComponent(ViewModel);
 
 const MenuToggle = () => (
-  <VMComponent render={ ({ showMenu, toggleMenu }) => (
-    <button onClick={toggleMenu} />
-    { showMenu
-      ? <Menu />
-      : null
-    }
-  )} />
+  <div>
+    ...
+    <VMComponent render={ ({ showMenu, toggleMenu }) => (
+      <button onClick={toggleMenu} />
+      { showMenu
+        ? <Menu />
+        : null
+      }
+    )} />
+    ...
+  </div>
 );
 
 export default MenuToggle;

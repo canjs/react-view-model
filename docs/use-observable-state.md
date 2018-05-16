@@ -36,11 +36,13 @@ class Clock extends ylem.Component {
 
 ## ViewModel Classes
 
-As your app grows in complexity, we recommend defining ViewModels for managing state and interactions. Simple ES classes can be used to isolate code in a reusable and testable manner:
+As your app grows in complexity, we recommend defining ViewModels for managing state and interactions. Simple ES6 classes can be used to isolate code in a reusable and testable manner:
 
 ```js
-// ViewModel.js
-class ViewModel {
+// AppViewModel.js
+import { Object as ObservableObject} from 'ylem';
+
+class AppViewModel extends ObservableObject {
   constructor({ offset, limit, count }) {
     this.count = count || Infinity;
     this.offset = offset || 0;
@@ -65,22 +67,22 @@ class ViewModel {
   prev = () => this.offset -= this.limit;
 }
 
-export default ViewModel;
+export default AppViewModel;
 ```
 
-Use the ViewModel to create your state:
+Use the AppViewModel to create your state:
 
 ```js
 // Component.js
 import React from 'react';
-import ylem from 'ylem';
-import ViewModel from './ViewModel';
+import { Component } from 'ylem';
+import AppViewModel from './AppViewModel';
 
-class App extends ylem.Component {
+class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = new ViewModel({
+    this.state = new AppViewModel({
       offset: 20,
       limit: 10,
     });

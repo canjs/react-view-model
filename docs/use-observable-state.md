@@ -70,7 +70,7 @@ export default ViewModel;
 
 Use the ViewModel to create your state:
 
-```
+```js
 // Component.js
 import React from 'react';
 import ylem from 'ylem';
@@ -100,7 +100,7 @@ class App extends ylem.Component {
 Then the NextPrev component might look like:
 
 ```js
-const NextPrev = ({ next }) =>
+const NextPrev = ({ next, prev }) =>
   <div>
     <button onClick={next}>NEXT<button>
     <button onClick={prev}>PREV<button>

@@ -26,7 +26,7 @@ npm install ylem --save
 
 * [Extend `ylem.Component` for observable state](./docs/use-observable-state.md)
 * [`@connect` presentation components to observable data](./docs/use-higher-order-components.md)
-* [Use render props with `createComponent()`](./docs/use-viewmodel-components.md)
+* [Use render props with `createViewModelComponent()`](./docs/use-viewmodel-components.md)
 
 
 <table>
@@ -109,11 +109,7 @@ class Clock extends ylem.Component { // 👀
 </tr>
 </table>
 
-Notice that instead of calling `.setState`, we were able to just set the `.date` property directly? We know [React tells you not to do this](https://reactjs.org/docs/state-and-lifecycle.html#do-not-modify-state-directly), but now you _can_ update state directly with **ylem**. This seemingly minor change has all sorts of benefits we will explore in the following sections:
-
-+ Easy for developers of all skill levels to understand 💡
-+ Less boilerplate (no more `shouldComponentUpdate`, `shallowCompare`, or `PureComponents`) 💆
-+ Less time re-rendering 🔥
+Notice that instead of calling `.setState`, we were able to just set the `.date` property directly? We know [React tells you not to do this](https://reactjs.org/docs/state-and-lifecycle.html#do-not-modify-state-directly), but now you _can_ update state directly with **ylem**. This seemingly minor change has all sorts of benefits - read more about it on the [ylem homepage](http://bitovi.github.io/ylem).
 
 
 ## Contributing

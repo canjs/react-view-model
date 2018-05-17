@@ -373,7 +373,7 @@ footer {
 }
 
 .triptych:after {
-	content: 'hello';
+	content: ' ';
 	height: 0;
 	display: block;
 	overflow: hidden;

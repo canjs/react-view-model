@@ -1,11 +1,9 @@
 import namespace from 'can-namespace';
-import observe from 'can-observe';
+import { Object as ViewModel, Array as ModelList} from 'can-observe';
 
 import connect from './connect';
 import Component from './component';
 import createViewModelComponent from './create-view-model-component';
-
-const { Obect: ViewModel, Array: ModelList } = observe;
 
 namespace.ylem = {
 	connect,

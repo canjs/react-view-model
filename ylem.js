@@ -1,5 +1,5 @@
 import namespace from 'can-namespace';
-import { Object as ViewModel, Array as ModelList} from 'can-observe';
+import { Object as Model, Array as ModelList} from 'can-observe';
 
 import connect from './connect';
 import Component from './component';
@@ -9,7 +9,8 @@ namespace.ylem = {
 	connect,
 	withViewModel: connect,
 	Component,
-	ViewModel,
+	ViewModel: Model,
+	Model,
 	ModelList,
 	createViewModelComponent,
 };
@@ -19,7 +20,8 @@ export {
 	connect,
 	connect as withViewModel,
 	Component,
-	ViewModel,
+	Model as ViewModel,
+	Model,
 	ModelList,
 	createViewModelComponent,
 };

@@ -11,6 +11,12 @@ Next, generate your react app - we are calling it `my-app`:
 ```sh
 npx create-react-app my-app
 cd my-app
+```
+
+Finally, install ylem and start your app:
+
+```
+npm install ylem --save
 npm start
 ```
 

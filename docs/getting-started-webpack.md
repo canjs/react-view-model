@@ -1,6 +1,12 @@
 ## Getting Started with NPM and Webpack
 
-The best way to get **ylem** started with Webpack and React is with [Create React App](https://github.com/facebook/create-react-app).
+The best way to get **ylem** started with Webpack and React is with [Create React App](https://github.com/facebook/create-react-app). First make sure you have `npx` installed globally:
+
+```sh
+npm install npx -g
+```
+
+Next, generate your react app - we are calling it `my-app`:
 
 ```sh
 npx create-react-app my-app
@@ -8,15 +14,15 @@ cd my-app
 npm start
 ```
 
-From here, you can modify `src/App.js` to use ylem and see the live-reload in the browser.
+From here, you can modify `src/App.js` to use the **ylem** `Component` and see the live-reload in the browser.
 
 ```js
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import ylem from 'ylem';
+import { Component } from 'ylem';
 
-class App extends ylem.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = { count: 0 };
@@ -43,5 +49,3 @@ class App extends ylem.Component {
 
 export default App;
 ```
-
-Next: [Observable State](./use-observable-state.md)

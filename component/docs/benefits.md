@@ -19,7 +19,7 @@ class List extends Component { // (◕‿◕ )
     return Math.floor(Math.random() * 100);
   }
 
-  add = () => {
+  add() {
     this.state.items.push(this.randomNum()); // (◕‿◕ )
   }
 
@@ -66,7 +66,7 @@ Instead of all the boilerplate, you can simply pass state:
 <td>
 
 ```js
-import { Component } form 'react';
+import React form 'react';
 
 class App extends React.Component {
   constructor(props) {
@@ -76,13 +76,15 @@ class App extends React.Component {
       offset: 20,
       count: 300
     };
+    this.setLimit = this.setLimit.bind(this);
+    this.setOffset = this.setOffset.bind(this);
   }
 
-  setLimit = (limit) => {
+  setLimit(limit) {
     this.setState({ limit });
   }
 
-  setOffset = (offset) => {
+  setOffset(offset) {
     this.setState({ offset });
   }
 

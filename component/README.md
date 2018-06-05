@@ -16,7 +16,7 @@ npm install ylem --save
 
 ## Usage
 
-**If you know React and JavaScript, you already know ylem.** The following is a basic example of how to update state using **ylem**. Feel free to edit this example on [CodeSandbox](https://codesandbox.io/s/qx1nzj6r29?hidenavigation=1&module=%2Fsrc%2Fylem%2Fhello-world.js&moduleview=1).
+**If you know React and JavaScript, you already know ylem.** The following is a basic example of how to update state using **ylem**. Feel free to edit this example on [CodeSandbox](https://codesandbox.io/s/qx1nzj6r29?hidenavigation=1&module=%2Fsrc%2Fylem%2Fclock.js&moduleview=1).
 
 <table>
 <tr><th>React</th><th>ylem</th></tr>

@@ -11,30 +11,38 @@ If you are familiar with Redux, **ylem** will feel very familiar.
 When your state updates, your components automatically re-render, allowing you to separate your UI from your Business Logic in a way that is familiar, easy to test, and just makes sense.
 
 ```js
-import React from "react";
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import ylem, { ObserveObject } from "ylem";
 
 class Store extends ObserveObject {
-  count = 0;
+  count = 0
 
   increment = () => {
     this.count++;
-  };
+  }
 
   decrement = () => {
     this.count--;
-  };
+  }
 }
 
-const MyComponent = ({ count, increment, decrement }) => (
-  <div>
-    <button onClick={decrement}>-</button>
-    <input readOnly value={count} />
-    <button onClick={increment}>+</button>
-  </div>
-);
+class MyComponent extends Component {
+    render() {
+      const { count, increment, decrement } = props;
+      return (
+          <div>
+            <button onClick={decrement}>-</button>
+            <input readOnly value={count} />
+            <button onClick={increment}>+</button>
+          </div>
+      )
+    }
+}
 
-export default ylem(Store, MyComponent);
+const App =  ylem(Store, MyComponent);
+
+ReactDOM.render(<App />, document.getElementById("root"));
 ```
 
 ---
@@ -117,11 +125,11 @@ Change your `App.js` code to something like this:
 
 ```js
 class Store extends ObserveObject {
-  count = 0;
+  count = 0
 
   increment = () => {
     this.count++;
-  };
+  }
 }
 
 const store = new Store();
@@ -147,11 +155,11 @@ Once connected, **ylem** will automatically pass an instance of the `Store` clas
 
 ```js
 class Store extends ObserveObject {
-  count = 0;
+  count = 0
 
   increment = () => {
     this.count++;
-  };
+  }
 }
 
 const Counter = props => (
@@ -189,11 +197,11 @@ This `appstate` will be an observable object instance, representing our top leve
 // appstate.js
 import { ObserveObject } from "ylem";
 class AppState extends ObserveObject {
-  user = null;
+  user = null
 
   login = () => {
     this.user = "yetti";
-  };
+  }
 }
 
 export default new AppState();
@@ -210,11 +218,11 @@ import ylem, { ObserveObject } from "ylem";
 import appstate from "./appstate";
 
 class Store extends ObserveObject {
-  count = 0;
+  count = 0
 
   increment = () => {
     this.count++;
-  };
+  }
 
   get user() {
     return appstate.user;

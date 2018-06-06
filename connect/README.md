@@ -4,9 +4,9 @@
 [![Build Status](https://travis-ci.org/bitovi/ylem.svg?branch=master)](https://travis-ci.org/bitovi/ylem)
 [![Greenkeeper Badge](https://badges.greenkeeper.io/bitovi/ylem.svg)](https://greenkeeper.io/)
 
-**ylem** provides scalable and easy to understand state management for your [React](https://reactjs.org) application.
+**ylem** provides scalable and easy to understand state management for your [React](https://reactjs.org) application. It works by enhancing **Dumb** ([presentational](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.v9i90qbq8)) components into **Smart** ([container](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.v9i90qbq8)) components by "connecting" them to [observable objects and arrays](./docs/api.md#observable-objects).
 
-Enhance **Dumb** ([presentational](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.v9i90qbq8)) components into **Smart** ([container](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.v9i90qbq8)) components by "connecting" them to [observable objects and arrays](./docs/api.md#observable-objects). If you are familiar with Redux, **ylem** may feel familiar but simple.
+If you are familiar with Redux, **ylem** will feel very familiar.
 
 When your state updates, your components automatically re-render, allowing you to separate your UI from your Business Logic in a way that is familiar, easy to test, and just makes sense.
 
@@ -26,10 +26,10 @@ class Store extends ObserveObject {
   };
 }
 
-const MyComponent = ({ value, increment, decrement }) => (
+const MyComponent = ({ count, increment, decrement }) => (
   <div>
     <button onClick={decrement}>-</button>
-    <input readOnly value={value} />
+    <input readOnly value={count} />
     <button onClick={increment}>+</button>
   </div>
 );
@@ -38,8 +38,6 @@ export default ylem(Store, MyComponent);
 ```
 
 ---
-
-This isn't limited to a components internal state either, **ylems** observable objects and arrays are _reactive_ to each other, which allows you to move your domain models and business logic out of your components and into reactive classes and stores.
 
 Learn how to architect your React app with **ylem** for concise and powerful state management without the struggle.
 
@@ -201,7 +199,7 @@ class AppState extends ObserveObject {
 export default new AppState();
 ```
 
-This is a contrived example, just to illustrate a point. Of course, in a real app, logging-in would be much more complicated, and the user wouldn't be a string, but you'll have to infer the value of the demonstration yourself.
+Authentication in a real app is much more complicated than what we show here. This example is to demonstrate how it works without getting to deep into the weeds.
 
 Now, back in our `App.js` component, let's import the `appstate` instance and use the `user` property and `login` method to show how you can split your stores into independent entities, but still keep the reactive nature for your auto-rendering UI components.
 
@@ -242,6 +240,8 @@ const Counter = ({ user, login, count, increment }) => (
 
 export default ylem(Store, Counter);
 ```
+## Continue learning about ylem...
+
 I hope you can see the value of what we've shown in this contrived example, but **ylem** offers even more:
 
 - `connect()` a Redux like syntax

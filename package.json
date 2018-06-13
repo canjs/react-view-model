@@ -21,7 +21,7 @@
     "prepublishOnly": "npm run build",
     "testee": "testee test/test.html --browsers firefox",
     "test": "npm run detect-cycle && npm run eslint && npm run testee",
-    "eslint": "eslint . --ignore-pattern \"dist\"",
+    "eslint": "eslint .",
     "release:pre": "npm version prerelease && npm publish --tag pre",
     "release:patch": "npm version patch && npm publish",
     "release:minor": "npm version minor && npm publish",
@@ -36,7 +36,6 @@
     "react",
     "reactjs",
     "state-management",
-    "viewmodel",
     "react-view-model",
     "observables",
     "canjs",
@@ -52,17 +51,18 @@
     "can-observation": "^4.0.1",
     "can-observation-recorder": "^1.0.2",
     "can-observe": "^2.1.0",
-    "can-queues": "^1.0.1",
-    "can-reflect": "^1.11.1"
+    "can-queues": "^1.1.0",
+    "can-reflect": "^1.16.1",
+    "hoist-non-react-statics": "^2.5.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
     "bit-docs": "0.0.8",
-    "can-define": "^2.2.4",
+    "can-define": "^2.3.1",
     "detect-cyclic-packages": "^1.1.1",
     "done-serve": "^2.2.0",
     "eslint": "^4.19.1",
-    "eslint-plugin-react": "^7.7.0",
+    "eslint-plugin-react": "^7.8.2",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "steal": "^1.11.6",
@@ -89,7 +89,7 @@
     }
   },
   "steal": {
-    "main": "ylem",
+    "main": "index",
     "babelOptions": {
       "plugins": [
         "transform-decorators-legacy"

@@ -21,8 +21,6 @@
       "quotes": [ "error", "single" ],
       "react/prop-types": "off",
       "no-console": "warn",
-
-      "react/no-direct-mutation-state": "off"
   },
   "env": {
     "es6": true,

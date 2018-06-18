@@ -2,6 +2,7 @@ import './connect';
 import './component';
 import './create-component';
 import './with-can-define';
+import './nested-render-observe-array-bug';
 
 import QUnit from 'steal-qunit';
 import React, { Component } from 'react';
@@ -75,13 +76,19 @@ QUnit.module('@yelm', () => {
 		// https://reactjs.org/docs/higher-order-components.html#convention-wrap-the-display-name-for-easy-debugging
 		@ylem
 		class TestComponent extends Component {}
-		supportsFunctionName && assert.equal(TestComponent.name, 'YlemObserver(TestComponent)', 'returned component is properly named');
-
-		function TestFunctionComponent() {
-			return null;
+		if (process.env.NODE_ENV !== 'test-prod') {
+			supportsFunctionName && assert.equal(TestComponent.name, 'YlemObserver(TestComponent)', 'returned component is properly named');
 		}
+
+		function TestFunctionComponent() { return null; }
 		const ObserverComponent = ylem(TestFunctionComponent);
-		supportsFunctionName && assert.equal(ObserverComponent.name, 'YlemObserver(TestFunctionComponent)', 'returned component is properly named');
+		if (process.env.NODE_ENV !== 'test-prod') {
+			supportsFunctionName && assert.equal(ObserverComponent.name, 'YlemObserver(TestFunctionComponent)', 'returned component is properly named');
+		}
+
+		if (process.env.NODE_ENV === 'test-prod') {
+			assert.expect(0);
+		}
 	});
 
 	QUnit.test('ObserverComponent should stop observing when it unmounts', (assert) => {

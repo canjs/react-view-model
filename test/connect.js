@@ -53,7 +53,9 @@ QUnit.module('@connect with ObserveObject', () => {
 
 		const TestComponent = connect(ViewModel)(MyComponent);
 
-		assert.equal(TestComponent.propTypes, ViewModel.propTypes, 'connected component has the correct propTypes');
+		if (process.env.NODE_ENV !== 'test-prod') {
+			assert.equal(TestComponent.propTypes, ViewModel.propTypes, 'connected component has the correct propTypes');
+		}
 
 		const testInstance = ReactTestUtils.renderIntoDocument( <TestComponent bar="bar" /> );
 		const divComponent = ReactTestUtils.findRenderedDOMComponentWithTag( testInstance, 'div' );
@@ -205,7 +207,6 @@ QUnit.module('@connect with ObserveObject', () => {
 		assert.equal(divComponent.innerText, 'test New Prop Value');
 	});
 
-
 	QUnit.test('rendering with Component and transformed props', (assert) => {
 		class ViewModel extends ObserveObject {
 			foo = 'foo'
@@ -226,7 +227,9 @@ QUnit.module('@connect with ObserveObject', () => {
 			}
 		}
 
-		supportsFunctionName && assert.equal(TestComponent.name, 'YlemConnected(TestComponent)', 'returned component is properly named');
+		if (process.env.NODE_ENV !== 'test-prod') {
+			supportsFunctionName && assert.equal(TestComponent.name, 'YlemConnected(TestComponent)', 'returned component is properly named');
+		}
 
 		const testInstance = ReactTestUtils.renderIntoDocument( <TestComponent bar="bar" /> );
 		const divComponent = ReactTestUtils.findRenderedDOMComponentWithTag( testInstance, 'div' );
@@ -253,7 +256,9 @@ QUnit.module('@connect with ObserveObject', () => {
 
 		const ConnectedTestComponent = connect(ViewModel, { mapProps: props => ({ props }) })(TestComponent);
 
-		supportsFunctionName && assert.equal(ConnectedTestComponent.name, 'YlemConnected(TestComponent)', 'returned component is properly named');
+		if (process.env.NODE_ENV !== 'test-prod') {
+			supportsFunctionName && assert.equal(ConnectedTestComponent.name, 'YlemConnected(TestComponent)', 'returned component is properly named');
+		}
 
 		const testInstance = ReactTestUtils.renderIntoDocument( <ConnectedTestComponent bar="bar" /> );
 		const divComponent = ReactTestUtils.findRenderedDOMComponentWithTag( testInstance, 'div' );

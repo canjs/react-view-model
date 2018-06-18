@@ -19,17 +19,22 @@
     "preversion": "npm test",
     "postversion": "git push --tags && git push",
     "prepublishOnly": "npm run build",
-    "testee": "testee test/test.html --browsers firefox",
-    "test": "npm run detect-cycle && npm run eslint && npm run testee",
-    "eslint": "eslint .",
+    "testee-src": "testee test/test.html --browsers firefox",
+    "testee-development": "testee test/test-development.html --browsers firefox",
+    "testee-production": "testee test/test-production.html --browsers firefox",
+    "test-src": "npm run build && npm run testee-src",
+    "test-development": "npm run build && npm run testee-development",
+    "test-production": "npm run build && npm run testee-production",
+    "pretest": "npm run detect-cycle && npm run eslint",
+    "test": "npm run test-src && npm run test-development && npm run test-production",
     "release:pre": "npm version prerelease && npm publish --tag pre",
     "release:patch": "npm version patch && npm publish",
     "release:minor": "npm version minor && npm publish",
     "release:major": "npm version major && npm publish",
-    "document": "bit-docs",
-    "develop": "done-serve --static --develop --port 8080",
+    "eslint": "eslint .",
+    "detect-cycle": "detect-cyclic-packages --ignore done-serve",
     "build": "node build.js",
-    "detect-cycle": "detect-cyclic-packages --ignore done-serve"
+    "develop": "done-serve --static --develop --port 8080"
   },
   "main": "dist",
   "keywords": [
@@ -57,12 +62,12 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
-    "bit-docs": "0.0.8",
     "can-define": "^2.3.1",
     "detect-cyclic-packages": "^1.1.1",
     "done-serve": "^2.2.0",
     "eslint": "^4.19.1",
     "eslint-plugin-react": "^7.8.0",
+    "prop-types": "^15.6.1",
     "react": "~16.3.2",
     "react-dom": "~16.3.2",
     "steal": "^1.11.6",
@@ -73,27 +78,25 @@
   "peerDependencies": {
     "react": "~16.3.2"
   },
-  "bit-docs": {
-    "dependencies": {
-      "bit-docs-dev": "^0.0.3",
-      "bit-docs-generate-readme": "^0.0.8",
-      "bit-docs-glob-finder": "^0.0.5",
-      "bit-docs-js": "^0.0.3"
-    },
-    "glob": {
-      "pattern": "docs/**/*.{js,md}",
-      "ignore": "node_modules/**/*"
-    },
-    "readme": {
-      "apis": "./docs/apis.json"
-    }
-  },
   "steal": {
     "main": "index",
     "babelOptions": {
       "plugins": [
-        "transform-decorators-legacy"
+        "transform-decorators-legacy",
+        "transform-class-properties"
       ]
+    },
+    "envs": {
+      "test-dev": {
+        "map": {
+          "ylem": "ylem/dist/development/index"
+        }
+      },
+      "test-prod": {
+        "map": {
+          "ylem": "ylem/dist/production/index"
+        }
+      }
     }
   }
 }

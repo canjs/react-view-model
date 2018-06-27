@@ -52,13 +52,16 @@
     "javascript"
   ],
   "dependencies": {
+    "can-diff": "^1.0.4",
     "can-namespace": "^1.0.0",
     "can-observation": "^4.0.1",
     "can-observation-recorder": "^1.0.2",
     "can-observe": "^2.1.0",
     "can-queues": "^1.1.0",
     "can-reflect": "^1.16.1",
-    "hoist-non-react-statics": "^2.5.0"
+    "hoist-non-react-statics": "^2.5.0",
+    "lodash.get": "^4.4.2",
+    "lodash.set": "^4.3.2"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",

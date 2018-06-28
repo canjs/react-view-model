@@ -12,6 +12,6 @@
 		- `@async`
 		- `@resolver`
 - `ObserveArray`
-- `connect(ObservableClass)` alias `withViewModel`
-- `createComponent(ObservableClass)`
+- `connect(ObservableClass, opts)` alias `withViewModel`
+- `createComponent(ObservableClass, opts)`
 - `observer(Component)`

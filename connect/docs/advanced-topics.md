@@ -15,6 +15,4 @@
     - only view-specific logic
   - ModelProvider with context api?
   - example: sports stats
-- Using `observe()` to create **observer components** to get extra rendering efficiency
-  - performance screenshots
 - Resolving name conflicts with the `deriveUpdates` option in `ylem()`, `connect()`, and `createComponent()`

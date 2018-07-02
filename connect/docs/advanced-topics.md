@@ -1,12 +1,11 @@
 # Advanced Topics
 
-- Easy Testing
-  - example: any
 - Using `createComponent()` to make components that accept a render prop
   - example: any
 - Using `withViewModel()` as an Enhancer with the Recompose library
   - comment that it is an alias of `connect()`
   - example: any
+
 - Server connections with `can-connect` and `fetch`
   - example: any
 - Architecting with an MVVM architecture

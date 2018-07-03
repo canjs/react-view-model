@@ -15,4 +15,3 @@
     - only view-specific logic
   - ModelProvider with context api?
   - example: sports stats
-- Resolving name conflicts with the `deriveUpdates` option in `ylem()`, `connect()`, and `createComponent()`

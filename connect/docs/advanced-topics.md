@@ -6,8 +6,6 @@
   - comment that it is an alias of `connect()`
   - example: any
 
-- Server connections with `can-connect` and `fetch`
-  - example: any
 - Architecting with an MVVM architecture
   - show Models
     - high reusable, most logic here

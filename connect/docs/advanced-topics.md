@@ -2,9 +2,6 @@
 
 - Using `createComponent()` to make components that accept a render prop
   - example: any
-- Using `withViewModel()` as an Enhancer with the Recompose library
-  - comment that it is an alias of `connect()`
-  - example: any
 
 - Architecting with an MVVM architecture
   - show Models

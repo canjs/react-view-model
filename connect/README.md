@@ -29,7 +29,7 @@ class Store extends ObserveObject {
 
 class MyComponent extends Component {
     render() {
-      const { count, increment, decrement } = props;
+      const { count, increment, decrement } = this.props;
 
       return (
           <div>
@@ -41,7 +41,7 @@ class MyComponent extends Component {
     }
 }
 
-const App =  ylem(Store, MyComponent);
+const App =  connect(Store)(MyComponent);
 
 ReactDOM.render(<App />, document.getElementById("root"));
 ```

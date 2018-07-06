@@ -45,7 +45,7 @@ describe('CounterStore', () => {
     });
   });
 
-  describe('store.increment', () => {
+  describe('increment method', () => {
     it('increases the count property', () => {
       const store = new CounterStore();
       store.increment();
@@ -82,9 +82,9 @@ describe('Counter', () => {
         <Counter count={29} />
       );
 
-      // note: react children is an array
-      const count = renderer.findByProps({ id: 'count' });
-      expect(count).to.have.deep.property('children', [ '29' ]);
+      // note: children is an array
+      const count = renderer.root.findByProps({ id: 'count' });
+      expect(count.children).to.include('29');
     });
   });
 
@@ -95,9 +95,10 @@ describe('Counter', () => {
         <Counter increment={() => called = true} />
       );
 
-      expect(called).to.be(false);
-      renderer.findByType('button').simulate('click');
-      expect(called).to.be(true);
+      const buttons = renderer.root.findAllByType('button');
+      expect(called).to.equal(false);
+      buttons[1].props.onClick();
+      expect(called).to.equal(true);
     });
   });
 });

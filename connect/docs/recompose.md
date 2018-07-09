@@ -7,23 +7,27 @@ Ylem provides a `withViewModel` method (which is really just an alias of `connec
 ```js
 const { compose } = Recompose;
 
-class ToggleStore extends ObserveObject {
-  visible = false
+const withToggle = (visibleDefault = true) => {
+  class ToggleStore extends ObserveObject {
+    visible = visibleDefault
 
-  toggleVisible = () => {
-    this.visible = !this.visible;
+    toggleVisible = () => {
+      this.visible = !this.visible;
+    }
   }
-}
 
-const withToggle = () => withViewModel(ToggleStore);
+  return withViewModel(ToggleStore);
+};
 
 const enhance = compose(
-  withToggle(),
+  withToggle(false),
+  renameProps({ visible: 'showMenu', toggleVisible: 'toggleMenu' }),
+  setDisplayName('ComponentWithToggle'),
 );
 
-const EnhancedComponent = enhance(({ visible, toggleVisible }) => (
-  <div onClick={toggleVisible}>
-    { visible ? 'show' : 'hide' }
+const EnhancedComponent = enhance(({ showMenu, toggleMenu, children }) => (
+  <div onClick={toggleMenu}>
+    { showMenu ? children : null }
   </div>
 ));
 ```

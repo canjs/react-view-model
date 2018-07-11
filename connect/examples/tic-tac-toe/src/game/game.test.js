@@ -54,7 +54,7 @@ describe('Game', () => {
 				<Game  id="1" reset={() => called = true} />
 			);
 
-			const button = renderer.root.findByType('button');
+			const button = renderer.root.findByProps({ className: 'game-reset' });
 
 			expect(called).to.equal(false);
 			button.props.onClick();

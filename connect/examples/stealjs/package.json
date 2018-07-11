@@ -7,7 +7,9 @@
     "build": "steal-tools build"
   },
   "steal": {
-    "plugins": [ "steal-css" ],
+    "plugins": [
+      "steal-css"
+    ],
     "babelOptions": {
       "plugins": [
         "transform-class-properties"
@@ -17,7 +19,7 @@
   "dependencies": {
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "ylem": "^2.0.7-2"
+    "ylem": "^2.1.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",

@@ -29,7 +29,7 @@ describe('Board', () => {
 				<Board status="this is a status" select={() => {}} squares={[]} />
 			);
 
-			const count = renderer.root.findByProps({ className: 'status' });
+			const count = renderer.root.findByProps({ className: 'board-status' });
 			expect(count.children).to.include('this is a status');
 		});
 	});

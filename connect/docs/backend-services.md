@@ -1,4 +1,4 @@
-## Server Communication
+## Backend Services
 
 Inevitably, you will need to communicate with a backend. Ylem makes this very easy.
 
@@ -17,7 +17,8 @@ export class ResultsStore extends ObserveObject {
   @getAsync
   get results() {
     return fetch(`https://swapi.co/api/people/?search=${this.search}`)
-      .then((response) => response.results)
+      .then(response => response.json())
+      .then(response => response.results)
     ;
   }
 }

@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import ReactTestUtils from 'react-dom/test-utils';
 import { supportsFunctionName } from './utils';
 
-import ylem, { ObserveObject } from 'ylem';
+import ylem, { ObserveObject, ObserveArray } from 'ylem';
 
 QUnit.module('@yelm', () => {
 
@@ -258,4 +258,16 @@ QUnit.module('@yelm', () => {
 		assert.equal(testInstance.props.foo, 'New Prop Value');
 		assert.equal(divComponent.innerText, 'test New Prop Value');
 	});
+
+	QUnit.test('ObserveArray.map() shouldn\'t convert jsx to proxies', (assert) => {
+		const myList = new ObserveArray([ 1 ]);
+		const myJSX = (<div key={1}>hi</div>);
+		const myJSXMappedList = myList.map(item => myJSX);
+		assert.ok(myJSXMappedList[0] === myJSX, 'jsx equals returned jsx');
+
+		const myNonJSX = { foo: 'bar' };
+		const myNonJSXMappedList = myList.map(item => myNonJSX);
+		assert.ok(myNonJSXMappedList[0] !== myNonJSX, 'non jsx doesn\'t equal returned non jsx');
+	});
+		
 });

@@ -259,15 +259,28 @@ QUnit.module('@yelm', () => {
 		assert.equal(divComponent.innerText, 'test New Prop Value');
 	});
 
-	QUnit.test('ObserveArray.map() shouldn\'t convert jsx to proxies', (assert) => {
-		const myList = new ObserveArray([ 1 ]);
+	QUnit.test('should not make jsx observable', (assert) => {
 		const myJSX = (<div key={1}>hi</div>);
-		const myJSXMappedList = myList.map(item => myJSX);
-		assert.ok(myJSXMappedList[0] === myJSX, 'jsx equals returned jsx');
+		const myJSXList = new ObserveArray([ myJSX ]);
 
-		const myNonJSX = { foo: 'bar' };
-		const myNonJSXMappedList = myList.map(item => myNonJSX);
-		assert.ok(myNonJSXMappedList[0] !== myNonJSX, 'non jsx doesn\'t equal returned non jsx');
+		// ObserveArray methods
+		assert.ok(myJSXList[0] === myJSX, 'ObserveArray constructor');
+		assert.ok(myJSXList.map(item => myJSX)[0] === myJSX, 'ObserveArray.map()');
+		myJSXList.forEach(jsx => {
+			assert.ok(jsx === myJSX, 'ObserveArray.forEach()');
+		});
+		myJSXList.every(jsx => {
+			assert.ok(jsx === myJSX, 'ObserveArray.every()');
+		});
+		myJSXList.filter(jsx => {
+			assert.ok(jsx === myJSX, 'ObserveArray.filter()');
+		});
+		myJSXList.push(myJSX);
+		assert.ok(myJSXList[1] === myJSX, 'ObserveArray.push()');
+		assert.ok(myJSXList.pop() === myJSX, 'ObserveArray.pop()');
+		
+		// ObserveObject methods
+		assert.ok(new ObserveObject({ jsx: myJSX }).jsx === myJSX, 'ObserveObject constructor');
 	});
 		
 });

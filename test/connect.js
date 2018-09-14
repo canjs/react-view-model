@@ -448,4 +448,35 @@ QUnit.module('@connect with ObserveObject', () => {
 		const parentDiv = ReactTestUtils.findRenderedDOMComponentWithTag(parentInstance, 'div');
 		assert.equal(getTextFromElement(parentDiv), 'foo', 'foo');
 	});
+
+	QUnit.test('should not preserve non-numeric key properties on non-observable arrays passed as props', (assert) => {
+		assert.expect(2);
+		const done = assert.async();
+
+		class ParentViewModel extends ObserveObject {
+			constructor(props) {
+				super(props);
+				this.nonObservableArray = new Array([ 1 ]);
+				this.nonObservableArray.foo = 'foo';
+				setTimeout((value) => {
+					const newNonObservableArray = new Array([ 2 ]);
+					newNonObservableArray.foo = 'bar';
+					this.nonObservableArray = newNonObservableArray;
+					assert.equal(getTextFromElement(parentDiv), 'foo', 'foo');
+					done();
+				}, 10);
+			}
+		}
+
+		const Parent = connect(ParentViewModel)(({ nonObservableArray }) => (
+			<Child nonObservableArray={nonObservableArray} />
+		));
+		const Child = connect(EmptyViewModel)(({ nonObservableArray }) => (
+			<div>{nonObservableArray.foo}</div>
+		));
+
+		const parentInstance = ReactTestUtils.renderIntoDocument(<Parent />);
+		const parentDiv = ReactTestUtils.findRenderedDOMComponentWithTag(parentInstance, 'div');
+		assert.equal(getTextFromElement(parentDiv), 'foo', 'foo');
+	});
 });

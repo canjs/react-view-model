@@ -6,7 +6,7 @@ import { connect } from './lib/connected-component';
 import { createComponent } from './lib/observable-component';
 import { Component, observer } from './lib/observer-component';
 import * as propertyDecorators from './property-decorators';
-import './lib/make-observe';
+import './lib/observables';
 
 //!steal-remove-start
 import React from 'react';

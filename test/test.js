@@ -259,7 +259,7 @@ QUnit.module('@yelm', () => {
 		assert.equal(divComponent.innerText, 'test New Prop Value');
 	});
 
-	QUnit.test('should not make jsx observable', (assert) => {
+	QUnit.test('should not convert React elements into observable objects and arrays', (assert) => {
 		const myJSX = (<div key={1}>hi</div>);
 		const myJSXList = new ObserveArray([ myJSX ]);
 

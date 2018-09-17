@@ -6,10 +6,10 @@ import { connect } from './lib/connected-component';
 import { createComponent } from './lib/observable-component';
 import { Component, observer } from './lib/observer-component';
 import * as propertyDecorators from './property-decorators';
-import makeObserve from 'can-observe/src/-make-observe';
-import React from 'react';
+import './lib/make-observe';
 
 //!steal-remove-start
+import React from 'react';
 
 if (process.env.NODE_ENV !== 'production') {
 	(function(version) {
@@ -32,15 +32,6 @@ Object.assign(ylem, {
 	ObserveArray,
 	propertyDecorators,
 });
-
-const observe = makeObserve.observe;
-
-makeObserve.observe = function(input) {
-	if (React.isValidElement(input)) {
-		return input;
-	}
-	return observe(input);
-};
 
 namespace.ylem = ylem;
 
